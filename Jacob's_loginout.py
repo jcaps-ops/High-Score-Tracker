@@ -23,21 +23,32 @@
 
 import csv
 def login():
-    try:
-        with open("pass_a_user.csv",mode = "r") as file:
-            reader = csv.reader(file,delimiter=',')
-            header = next(reader)
-            users = []
-            for line in reader:
-                users.append(
-                    {
-                         line[0],
-                         line[1]
-                    }
-                )
-    except:
-        print("cant find csp")
-    else:
-        for user in users:
-            print(user)
+    loop = True
+    while loop == True:
+        option = input("What is your username?\n").strip()
+        if option == "exit":
+            loop = False
+        try:
+            with open("pass_a_user.csv",mode = "r") as file:
+                reader = csv.reader(file,delimiter=',')
+                header = next(reader)
+                users = []
+                for line in reader:
+                    users.append(
+                        {
+                            line[0]:line[1],
+                            
+                        }
+                    )
+        except:
+            print("cant find csp")
+        else:
+            for user in users:
+                if option in user:
+                    print("already in data base")
+                    continue
+                elif option not in user:
+                    
+
+        
 login()
