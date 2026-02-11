@@ -24,25 +24,20 @@
 import csv
 def login():
     try:
-        with open("Main.py","r+", newline ='') as test:
-            reader = csv.reader(test,delimiter=',')
+        with open("pass_a_user.csv",mode = "r") as file:
+            reader = csv.reader(file,delimiter=',')
             header = next(reader)
             users = []
             for line in reader:
                 users.append(
                     {
-                       header[0]: line[0],
-                       header[1]: line[1],
-                       header[2]: line[2],
-                  }
-             )
+                         line[0],
+                         line[1]
+                    }
+                )
     except:
-        print("failed to open")
+        print("cant find csp")
     else:
-       try:
-            temp_user = input("ask user what their username is\n").strip().lower()
-            pass_location = users.find(temp_user)
-       except:
-             print("try again")
-             return username
+        for user in users:
+            print(user)
 login()
