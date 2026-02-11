@@ -46,9 +46,13 @@ def login():
             for user in users:
                 if option in user:
                     print("already in data base")
-                    continue
-                elif option not in user:
-                    
+                    break
+                
+                password = input("good, now select your password")
+        try:
+            with open("pass_a_user.csv",mode = "r") as file:
+                reader = csv.reader(file,delimiter=',')
+        except:
+            print("something went wrong")
 
-        
 login()
