@@ -47,7 +47,7 @@ def regis():
             loop = False  
               
         try:  
-            with open("Jacob/pass_a_user.csv", mode="r") as file:  
+            with open("Jacob/pass_a_user.csv", mode="r+") as file:  
                 reader = csv.reader(file, delimiter=',')   
                 users = []  
                 for line in reader:  
@@ -64,7 +64,7 @@ def regis():
         if not found:  
             password = input("good, now select your password\n")  
             try:  
-                with open("pass_a_user.csv", mode="a", newline='') as file:  
+                with open("Jacob/pass_a_user.csv", mode="a", newline='') as file:  
                     writer = csv.writer(file)  
                     writer.writerow([option, password])  
                 print("User added")  
