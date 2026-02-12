@@ -1,0 +1,4 @@
+make function that intakes username and score
+    for every line in the highscore file
+        if the username is on that line
+        
