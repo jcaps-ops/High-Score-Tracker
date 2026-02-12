@@ -1,4 +1,11 @@
 make function that intakes username and score
     for every line in the highscore file
         if the username is on that line
+            change the newest score with the intake score
+                if the new score is larger than high score
+                    replace highscore with new score
+                otherwise
+                    move on
+        if it isnt
+            move on
         
