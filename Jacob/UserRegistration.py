@@ -75,4 +75,3 @@ def regis():
 regis()
 
   
-d
