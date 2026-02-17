@@ -6,6 +6,5 @@ make function that intakes username and score
                     replace highscore with new score
                 otherwise
                     move on
-        if it isnt
+        if not
             move on
-        
