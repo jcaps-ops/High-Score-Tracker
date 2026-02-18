@@ -35,16 +35,24 @@
 #                display Could not write to file  
 #
 #run function regis()
-
+import random as r  
+import time as t  
+import sys  
   
+def sprint(text, delay=0.025):  
+    for char in text:  
+        sys.stdout.write(char)  
+        sys.stdout.flush()  
+        t.sleep(delay)  
 import csv  
 
 def regis():  
     loop = True  
     while loop:  
-        option = input("What is your username?\n").strip()  
+        option = input("\033[38;2;49;125;125mWhat is your username? or type exit to exit\n").strip()  
         if option == "exit":  
-            loop = False  
+            loop = False
+            return 
               
         try:  
             with open("Jacob/pass_a_user.csv", mode="r+") as file:  
@@ -53,25 +61,61 @@ def regis():
                 for line in reader:  
                     users.append({line[0]: line[1]})  
         except:  
-            print("cant find csv")  
+            sprint("\033[38;2;49;125;125mcant find csv")  
             continue  
         found = False  
         for user in users:  
             if option in user:  
-                print("already in data base")  
+                sprint("\033[38;2;255;1;1malready in data base\n")  
                 found = True  
                 break  
         if not found:  
-            password = input("good, now select your password\n")  
+            password = input("\033[38;2;49;125;125mgood, now select your password\n")  
             try:  
                 with open("Jacob/pass_a_user.csv", mode="a", newline='') as file:  
                     writer = csv.writer(file)  
                     writer.writerow([option, password])  
-                print("User added")  
+                sprint("\033[38;2;49;125;125mUser added\n")  
              
             except:  
-                print("Could not write to file.")  
+                sprint("\033[38;2;49;125;125mCould not write to file.")  
 
-regis()
 
-  
+
+def login():  
+    loop = True  
+    while loop:  
+        option = input("\033[38;2;0;125;1mWhat is your username? or type exit to exit\n").strip()  
+        if option == "exit":  
+            loop = False  
+            continue  
+        try:  
+            with open("Jacob/pass_a_user.csv", mode="r") as file:  
+                reader = csv.reader(file, delimiter=',')                               
+                users = {}                                      
+                for line in reader:                             
+                    users[line[0]] = line[1]                    
+        except:                                                 
+            sprint("\033[38;2;0;125;1mcant find csv\n")                              
+            continue                                            
+        if option in users:  
+            password = input("\033[38;2;0;125;1mEnter your password:\n").strip()  
+            if password == users[option]:  
+                sprint("\033[38;2;0;125;1mLogin successful!\n")
+                username = option
+                return username  
+            else:  
+                sprint("\033[38;2;255;1;1mIncorrect password, i thought you had an IQ higher than 85.\n")  
+        else:  
+            sprint("\033[38;2;255;1;1mYou Spell Like my grandma.\n")  
+while True:
+    ei = input("\033[38;2;0;125;1mlogin or register\n").strip().lower()
+    if ei == "login":
+        login() 
+    elif ei == "register":
+        username = regis()
+    else:
+        print("\033[38;2;255;1;1mtry again")
+        continue
+
+# mol,man
