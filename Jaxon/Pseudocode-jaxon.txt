@@ -1,0 +1,158 @@
+define pathcross()
+    randomly generator 2 options then ask user for which option then go to that one
+    the options are (store,dice,wheel,blackjack,slots,lottery)
+    then send them to the correct function
+
+define dice(Money,boons)
+    ask the player for the bet
+    randomize 2 values from 1-6
+    one is the players the other one is the dealers whoever has greater wins
+    bet()
+    boons()
+
+define slots(Money,boons)
+    ask the player for the bet
+    randomize 3 values from (x,y,z)
+    if they line up you get money
+    bet(bets)
+    boons(boons)
+
+define wheel(Money,boons)
+    ask the player for the bet
+    ask what color they want
+    randomize 1 values from (1-101)
+    if they get right color then you get money
+    bet(bets)
+    boons(boons)
+
+define lottery(Money,boons)
+    ask the player for the bet
+    ask what size loto they want
+    randomize 1 values from (1-10)
+    if they get 1 then you get money
+    bet(bets)
+    boons(boons)
+
+define blackjack(Money,boons,boonbet)
+    boonbet = 0
+    total = 0
+    is_playing = True
+    d_total = 0
+
+    
+    print(f"the anount of money you have is {money}")
+    bet()
+
+    total = 0
+
+    total +=  random.randint(1,10)
+    total +=  random.randint(1,10)
+
+    print(f"Your total is {total}")
+
+    is_playing = True
+
+    while is_playing == True:
+        p_action = input("Would you like to hit or stand:")
+
+        if p_action == "hit":
+            total +=  random.randint(1,10)
+            print(total)
+
+            if total > 21:
+                total = 0
+                print("You busted")
+                is_playing = False
+
+        elif p_action == "stand":
+                is_playing = False
+        else:
+                print("That is not an acceptible option")
+
+    d_total = 0
+
+    while d_total < 17:
+        d_total += random.randint(1,10)
+
+        if d_total > 21:
+
+            d_total = 0
+
+    print(f"The dealers total is {d_total}")
+
+    if total > d_total:
+        calcboon()
+        money += boonbet
+        print("You won")
+    if total == d_total:
+        calcboon()
+        print("You both tied")
+    if total < d_total:
+        print("You lost")
+        islost = True
+        calcboon()
+        money -= boonbet
+
+define store(money,potentailboonname,potentailbooncost,luckstat)
+    newboon = ""
+
+    boonrand1 = random.randint(0,len(potentailbooncost) - 1)
+    storeoption1name = potentailboonname[boonrand1]
+    storeoption1cost = potentailbooncost[boonrand1]
+
+    boonrand2 = random.randint(0,(len(potentailbooncost) - 1))
+    storeoption2name = potentailboonname[boonrand2]
+    storeoption2cost = potentailbooncost[boonrand2]
+    global boons
+    while True:
+            print(f"You have {money} dollars")
+            print("The options at the store")
+            print(f"The first option is {storeoption1name} it costs {storeoption1cost} dollars")
+            print(f"the second option is {storeoption2name} it costs {storeoption2cost} dollars")
+            plyerinput = input("If you want to buy an option please input the number.If you do not want to buy one type n:")
+            if plyerinput == "1":
+                if money >= storeoption1cost:
+                    boons.append(storeoption1name)
+                    newboon = (storeoption1name)
+                    money -= storeoption1cost
+                    potentailboonname.pop(boonrand1)
+                    potentailbooncost.pop(boonrand1)
+                    break
+            elif plyerinput == "2":
+                if money >= storeoption2cost:
+                    boons.append(storeoption2name)
+                    newboon = (storeoption2name)
+                    money -= storeoption2cost
+                    potentailboonname.pop(boonrand2)
+                    potentailbooncost.pop(boonrand2)
+                    break
+            elif plyerinput == "n":
+                break
+            else:
+                print("not excepted input skill issue")
+
+    if newboon == "Lucky coin":
+        luckstat += 3
+    if newboon == "Budlight":
+        luckstat += 5
+    if newboon == "Sober":
+        luckstat -= 3
+    if newboon == "Too lucky":
+        luckstat += 7
+    print(f"You have these boons {boons}")
+
+define boons(boons)
+    just see if boon containes a boon then just do the effect
+
+define bet(bet)
+    just handleds adding the money from the bet and if you won
+
+def main_section()
+    for x in range(0,15):
+        pathcross()
+        if money == 0:
+            player lost
+
+main_section()
+        
+    
