@@ -38,13 +38,28 @@
 import random as r  
 import time as t  
 import sys  
-  
+import csv  
+def processing(text="Processing", duration=3, speed=0.5):
+    end_time = t.time() + duration
+    while t.time() < end_time:
+        for dots in range(4):
+            # The carriage return '\r' moves the cursor to the start of the line
+            # The 'end=""' prevents a new line from being printed
+            sys.stdout.write('\r' + text + '.' * dots + ' ' * (3 - dots))
+            sys.stdout.flush() # Forces the output to be written immediately
+            t.sleep(speed)
+    
+    # Clear the final line and print a finish message
+    sys.stdout.write('\r' + ' ' * (len(text) + 3) + '\r')
+    sys.stdout.flush()
+    print(text)
+
 def sprint(text, delay=0.025):  
     for char in text:  
         sys.stdout.write(char)  
         sys.stdout.flush()  
         t.sleep(delay)  
-import csv  
+
 
 def regis():  
     loop = True  
@@ -70,11 +85,13 @@ def regis():
                 found = True  
                 break  
         if not found:  
+            processing()
             password = input("\033[38;2;49;125;125mgood, now select your password\n")  
             try:  
                 with open("Jacob/pass_a_user.csv", mode="a", newline='') as file:  
                     writer = csv.writer(file)  
-                    writer.writerow([option, password])  
+                    writer.writerow([option, password])
+                processing()  
                 sprint("\033[38;2;49;125;125mUser added\n")  
              
             except:  
@@ -98,12 +115,13 @@ def login():
         except:                                                 
             sprint("\033[38;2;0;125;1mcant find csv\n")                              
             continue                                            
-        if option in users:  
+        if option in users: 
+            processing()
             password = input("\033[38;2;0;125;1mEnter your password:\n").strip()  
             if password == users[option]:  
+                processing()
                 sprint("\033[38;2;0;125;1mLogin successful!\n")
-                username = option
-                return username  
+                return option 
             else:  
                 sprint("\033[38;2;255;1;1mIncorrect password, i thought you had an IQ higher than 85.\n")  
         else:  
@@ -111,9 +129,10 @@ def login():
 while True:
     ei = input("\033[38;2;0;125;1mlogin or register\n").strip().lower()
     if ei == "login":
-        login() 
+        print(login()) 
     elif ei == "register":
-        username = regis()
+        
+        regis()
     else:
         print("\033[38;2;255;1;1mtry again")
         continue
