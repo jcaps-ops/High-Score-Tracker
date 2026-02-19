@@ -22,7 +22,7 @@ def sprint(text, delay=0.025):
         sys.stdout.flush()  
         t.sleep(delay)  
 def pass_cheker():  
-    special_characters = "!@#\$%^&*()_+-=[]{|;:,}.&lt;&gt;?)"  
+    special_characters = "!@#\$%^&*()_+-=[]{|;:,}.><?)"  
     numbers = "1234567890"  
     while True:  
         password = input("\033[38;2;49;125;125mgood, now select your password\n").strip()  
@@ -40,7 +40,7 @@ def pass_cheker():
           
         if errors:
             clearr()  
-            sprint("\033[38;2;255;1;1mPassword is not strong enough, WHat are you, a millenial?\n")  
+            sprint("\033[38;2;255;1;1mPassword is not strong enough, What are you, a millenial?🤣\n")  
             sprint("\033[38;2;255;1;1mMissing: " + ", ".join(errors) + "\n")  
         else:
             clearr()  
