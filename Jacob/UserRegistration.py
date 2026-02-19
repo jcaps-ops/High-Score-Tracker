@@ -38,10 +38,12 @@ def pass_cheker():
         if not any(char.islower() for char in password):  
             errors.append("a lowercase letter")  
           
-        if errors:  
-            sprint("\033[38;2;255;1;1mPassword is not strong enough, WHat are you, a millenial?")  
+        if errors:
+            clearr()  
+            sprint("\033[38;2;255;1;1mPassword is not strong enough, WHat are you, a millenial?\n")  
             sprint("\033[38;2;255;1;1mMissing: " + ", ".join(errors) + "\n")  
-        else:  
+        else:
+            clearr()  
             sprint("\033[38;2;49;125;125mPassword is strong!\n")  
             return password  
 def regis():  
@@ -76,7 +78,8 @@ def regis():
                 with open("Jacob/pass_a_user.csv", mode="a", newline='') as file:  
                     writer = csv.writer(file)  
                     writer.writerow([option, password])
-                processing()  
+                processing()
+                clearr() 
                 sprint("\033[38;2;49;125;125mUser added\n")  
              
             except:  
@@ -103,6 +106,7 @@ def login():
             password = input("\033[38;2;0;125;1mEnter your password:\n").strip()  
             if password == users[option]:  
                 processing()
+                clearr()
                 sprint("\033[38;2;0;125;1mLogin successful!\n")
                 return option 
             else: 
