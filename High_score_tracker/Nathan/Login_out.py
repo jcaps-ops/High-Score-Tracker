@@ -20,14 +20,14 @@ def login():
             #With open(Relative path of the file) reading mode all as file
             with open("pass_a_user.csv", mode="r") as file:  
                 #Do the same stuff from the notes all the way down
-                reader = csv.reader(file, delimiter=',')        #
-                header = next(reader)                           #
-                users = {}                                      #
-                for line in reader:                             #
-                    users[line[0]] = line[1]                    #
-        except:                                                 #
-            print("cant find csv")                              #
-            continue                                            #
+                reader = csv.reader(file, delimiter=',')#       |
+                header = next(reader)#                          |
+                users = {}#                                     |
+                for line in reader:#                            |
+                    users[line[0]] = line[1]#                   |
+        except:#                                                |
+            print("cant find csv")#                           \ | /
+            continue#                                          \|/
         #If the option they gave is in users
         if option in users:  
             password = input("Enter your password:\n").strip()  
@@ -40,4 +40,4 @@ def login():
         else:  
 #display username as invalid
             print("Username not found.")  
-login()  
+login()
