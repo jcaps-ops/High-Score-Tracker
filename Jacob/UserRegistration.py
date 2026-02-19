@@ -21,32 +21,34 @@ def sprint(text, delay=0.025):
         sys.stdout.write(char)  
         sys.stdout.flush()  
         t.sleep(delay)  
-def pass_cheker():  
-    special_characters = "!@#\$%^&*()_+-=[]{|;:,}.><?)"  
-    numbers = "1234567890"  
-    while True:  
-        password = input("\033[38;2;49;125;125mgood, now select your password\n").strip()  
-        errors = []  
-        if len(password) < 8:  
-            errors.append("at least 8 characters")  
-        if not any(char in numbers for char in password):  
-            errors.append("a number")  
-        if not any(char in special_characters for char in password):  
-            errors.append("a special character")  
-        if not any(char.isupper() for char in password):  
-            errors.append("an uppercase letter")  
-        if not any(char.islower() for char in password):  
-            errors.append("a lowercase letter")  
-          
-        if errors:
-            clearr()  
-            sprint("\033[38;2;255;1;1mPassword is not strong enough, What are you, a millenial?🤣\n")  
-            sprint("\033[38;2;255;1;1mMissing: " + ", ".join(errors) + "\n")  
-        else:
-            clearr()  
-            sprint("\033[38;2;49;125;125mPassword is strong!\n")  
-            return password  
-def regis():  
+# functions used everywhere^^^^^
+
+def regis():
+    def pass_cheker():  
+        special_characters = "!@#\$%^&*()_+-=[]{|;:,}.><?)"  
+        numbers = "1234567890"  
+        while True:  
+            password = input("\033[38;2;49;125;125mgood, now select your password\n").strip()  
+            errors = []  
+            if len(password) < 8:  
+                errors.append("at least 8 characters")  
+            if not any(char in numbers for char in password):  
+                errors.append("a number")  
+            if not any(char in special_characters for char in password):  
+                errors.append("a special character")  
+            if not any(char.isupper() for char in password):  
+                errors.append("an uppercase letter")  
+            if not any(char.islower() for char in password):  
+                errors.append("a lowercase letter")  
+            
+            if errors:
+                clearr()  
+                sprint("\033[38;2;255;1;1mPassword is not strong enough, What are you, a millenial?🤣\n")  
+                sprint("\033[38;2;255;1;1mMissing: " + ", ".join(errors) + "\n")  
+            else:
+                clearr()  
+                sprint("\033[38;2;49;125;125mPassword is strong!\n")  
+                return password   
     loop = True  
     while loop:  
         option = input("\033[38;2;49;125;125mWhat is your username? or type exit to exit\n").strip()  
