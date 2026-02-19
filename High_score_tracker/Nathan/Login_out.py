@@ -35,8 +35,9 @@ def login():
                 print("Login successful!")  
                 # Optionally break here if you want to stop after a successful login  
             else:  
+            #otherwise if user gives invalid password:    
                 print("Incorrect password.")  
         else:  
+#display username as invalid
             print("Username not found.")  
-  
 login()  
