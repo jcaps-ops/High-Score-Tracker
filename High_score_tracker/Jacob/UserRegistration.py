@@ -4,6 +4,8 @@ import time as t
 import sys  
 import csv  
 import os
+
+
 def clearr():  
     os.system('cls' if os.name == 'nt' else 'clear')  
 def processing(text="Processing", duration=3, speed=0.5):
@@ -28,7 +30,9 @@ def regis():
         special_characters = "!@#\$%^&*()_+-=[]{|;:,}.><?)"  
         numbers = "1234567890"  
         while True:  
-            password = input("\033[38;2;49;125;125mgood, now select your password\n").strip()  
+            password = input("\033[38;2;49;125;125mgood, now select your password, or type exit to exit\n").strip()
+            if password == "exit" or password == "Exit":
+                return password
             errors = []  
             if len(password) < 8:  
                 errors.append("at least 8 characters")  
@@ -76,6 +80,10 @@ def regis():
         if not found:  
             processing()
             password = pass_cheker()
+            if password == "exit" or password == "Exit":
+                clearr()  
+                loop = False
+                return 
             try:  
                 with open("Jacob/pass_a_user.csv", mode="a", newline='') as file:  
                     writer = csv.writer(file)  
@@ -105,7 +113,10 @@ def login():
             continue                                            
         if option in users: 
             processing()
-            password = input("\033[38;2;0;125;1mEnter your password:\n").strip()  
+            password = input("\033[38;2;0;125;1mEnter your password:\n").strip()
+            if password == "exit" or password == "Exit":
+                clearr()
+                return password  
             if password == users[option]:  
                 processing()
                 clearr()
@@ -125,5 +136,7 @@ while True:
         
         regis()
     else:
+        clearr()
         print("\033[38;2;255;1;1mtry again")
+    
         continue
