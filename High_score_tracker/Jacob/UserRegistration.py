@@ -62,7 +62,7 @@ def regis():
             return 
               
         try:  
-            with open("Jacob/pass_a_user.csv", mode="r+") as file:  
+            with open("Documents/pass_a_user.csv", mode="r+") as file:  
                 reader = csv.reader(file, delimiter=',')   
                 users = []  
                 for line in reader:  
@@ -85,7 +85,7 @@ def regis():
                 loop = False
                 return 
             try:  
-                with open("Jacob/pass_a_user.csv", mode="a", newline='') as file:  
+                with open("Documents/pass_a_user.csv", mode="a", newline='') as file:  
                     writer = csv.writer(file)  
                     writer.writerow([option, password])
                 processing()
@@ -103,7 +103,7 @@ def login():
             loop = False  
             continue  
         try:  
-            with open("Jacob/pass_a_user.csv", mode="r") as file:  
+            with open("Documents/pass_a_user.csv", mode="r") as file:  
                 reader = csv.reader(file, delimiter=',')                               
                 users = {}                                      
                 for line in reader:                             
