@@ -8,3 +8,28 @@ make function that intakes username and score
                     move on
         if not
             move on
+
+make function that outputs highscores
+    if there are ten or more people that have scores
+        print the ten people with the highest scores in order from most to least
+            ex: 1. Larry: 20987635
+                2. Steve: 12876450
+                3. John: 9987635
+                4. Mina: 8876450
+                5. Clark: 8787635
+                6. Ashleigh: 7645673
+                7. Thomas: 6154989
+                8. Steve_ButCool: 17
+                9. Terry: 5
+                10. Bob: -1999
+    else if there are less them ten people with scores
+        print all people in order from highest to lowest score
+
+make function to run again
+    ask user if they want to play again
+    if yes:
+        play game again
+    if no:
+        leave
+    otherwise:
+        ask again
