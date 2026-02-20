@@ -1,8 +1,6 @@
 # JQ 2nd Loginout 
 import csv  
-from helper import sprint
-from helper import clearr
-from helper import processing
+from helper import sprint, clearr, processing
 # functions used everywhere^^^^^
 
 def regis():
@@ -70,10 +68,12 @@ def regis():
                     writer.writerow([option, password])
                 processing()
                 clearr() 
-                sprint("\033[38;2;49;125;125mUser added\n")  
+                sprint("\033[38;2;49;125;125mUser added\n")
+                
              
             except:  
                 sprint("\033[38;2;49;125;125mCould not write to file.")  
+            return option  
 def login():  
     loop = True  
     while loop:  
