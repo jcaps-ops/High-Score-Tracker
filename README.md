@@ -15,10 +15,15 @@ You will need Python to run this successfully.
 ## List of Key Features
 ***
 -In the game there is a fun boss at the end and the gambling tension is high!🤑
+
 -There is plenty of ASCII art so be sure to have a big terminal! If it's small it won't work right❌🤏
+
 -If you are not fond of gambling I do not recommmend this game. All we do is gamble!🥳
+
 -Everything is randomized so don't blame us when you lose everything and go broke😅
+
 -It's Python so no need to install anything or work for anything. Just play the game and have fun! 🎉
+
 
 ## Contributors
 ***
