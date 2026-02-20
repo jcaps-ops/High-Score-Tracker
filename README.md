@@ -28,10 +28,15 @@ You will need Python to run this successfully.
 ## Contributors
 ***
 The programmers who made this code and worked hard on this project are:
+
 jcaps-ops
+
 INTELION11
+
 HunterWildClaw
+
 And Aiden-S-Codeler
+
 W's in the chat for these guys! 👏
 
 ## ENJOY THE GAME!!!
