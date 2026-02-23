@@ -32,4 +32,40 @@ def score_tracking(username, score):
         writer.writeheader()
         writer.writerows(all)
 
-score_tracking('Steve', 100)
+def highscores():
+    all = []
+    current = {'Highscore':0}
+    with open("High_score_tracker/Aiden/highscores.csv", mode= 'r') as sample:
+        reader = csv.reader(sample)
+        for line in reader:
+            if line[0] == 'Username':
+                pass
+            else:
+                all.append({'Username':line[0] ,'Highscore':line[1]})
+        print(all)
+        if len(all) >= 10:
+            for i in range(1, 10):
+                for user in all:
+                    if int(user['Highscore']) > int(current['Highscore']):
+                        current = user
+                    elif int(user['Highscore']) == int(current['Highscore']):
+                        current = user
+                    else:
+                        pass
+                print(f'{i}: {current["Username"]}: {current["Highscore"]}')
+                all.remove(current)
+                current = {'Highscore':0}
+        else:
+            for i in range(1, len(all)):
+                for user in all:
+                    if int(user['Highscore']) > int(current['Highscore']):
+                        current = user
+                    elif int(user['Highscore']) == int(current['Highscore']):
+                        current = user
+                    else:
+                        pass
+                print(f'{i}: {current["Username"]}: {current["Highscore"]}')
+                all.remove(current)
+                current = {'Highscore':0}
+
+highscores()
