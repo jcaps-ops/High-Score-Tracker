@@ -1,5 +1,6 @@
 # JQ 2nd Loginout 
 import csv  
+import hashlib as h
 from helper import sprint, clearr, processing
 # functions used everywhere^^^^^
 
