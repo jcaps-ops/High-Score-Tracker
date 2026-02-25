@@ -1,6 +1,6 @@
 # JQ 2nd Loginout 
 import csv  
-import hashlib as h
+import hashlib
 from helper import sprint, clearr, processing
 # functions used everywhere^^^^^
 
@@ -59,6 +59,11 @@ def regis():
         if not found:  
             processing()
             password = pass_cheker()
+            key = password[:3]
+            from hashlib import blake2b
+            encrypted = blake2b()
+            encrypted.update(password)
+            encrypted.hexdigest(key)
             if password == "exit" or password == "Exit":
                 clearr()  
                 loop = False
@@ -66,7 +71,7 @@ def regis():
             try:  
                 with open("Documents/pass_a_user.csv", mode="a", newline='') as file:  
                     writer = csv.writer(file)  
-                    writer.writerow([option, password])
+                    writer.writerow([option, encripted_pass])
                 processing()
                 clearr() 
                 sprint("\033[38;2;49;125;125mUser added\n")
@@ -97,8 +102,11 @@ def login():
             password = input("\033[38;2;0;125;1mEnter your password:\n").strip()
             if password == "exit" or password == "Exit":
                 clearr()
-                return password  
-            if password == users[option]:  
+                return password
+            key = password[:3]
+            encripted_pass = hashlib.shake_256(password)
+            encripted_pass.hexdigest(key)  
+            if encripted_pass == users[option]:  
                 processing()
                 clearr()
                 sprint("\033[38;2;0;125;1mLogin successful!\n")
