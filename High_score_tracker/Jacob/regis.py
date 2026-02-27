@@ -1,9 +1,10 @@
 # JQ 2nd Loginout 
 import csv  
-import hashlib as h
+import hashlib
 from helper import sprint, clearr, processing
-# functions used everywhere^^^^^
-
+import hashlib  
+from hash import hash
+from High_score_tracker.Jacob.logedin import login
 def regis():
     def pass_cheker():  
         special_characters = "!@#\$%^&*()_+-=[]{|;:,}.><?)"  
@@ -59,6 +60,7 @@ def regis():
         if not found:  
             processing()
             password = pass_cheker()
+            encripted_pass = hash(password,option)
             if password == "exit" or password == "Exit":
                 clearr()  
                 loop = False
@@ -66,7 +68,7 @@ def regis():
             try:  
                 with open("Documents/pass_a_user.csv", mode="a", newline='') as file:  
                     writer = csv.writer(file)  
-                    writer.writerow([option, password])
+                    writer.writerow([option, encripted_pass])
                 processing()
                 clearr() 
                 sprint("\033[38;2;49;125;125mUser added\n")
@@ -75,49 +77,3 @@ def regis():
             except:  
                 sprint("\033[38;2;49;125;125mCould not write to file.")  
             return option  
-def login():  
-    loop = True  
-    while loop:  
-        option = input("\033[38;2;0;125;1mWhat is your username? or type exit to exit\n").strip()  
-        if option == "exit": 
-            clearr() 
-            loop = False  
-            continue  
-        try:  
-            with open("Documents/pass_a_user.csv", mode="r") as file:  
-                reader = csv.reader(file, delimiter=',')                               
-                users = {}                                      
-                for line in reader:                             
-                    users[line[0]] = line[1]                    
-        except:                                                 
-            sprint("\033[38;2;0;125;1mcant find csv\n")                              
-            continue                                            
-        if option in users: 
-            processing()
-            password = input("\033[38;2;0;125;1mEnter your password:\n").strip()
-            if password == "exit" or password == "Exit":
-                clearr()
-                return password  
-            if password == users[option]:  
-                processing()
-                clearr()
-                sprint("\033[38;2;0;125;1mLogin successful!\n")
-                return option 
-            else: 
-                clearr() 
-                sprint("\033[38;2;255;1;1mIncorrect password, i thought you had an IQ higher than 85.\n")  
-        else:  
-            clearr()
-            sprint("\033[38;2;255;1;1mYou Spell Like my grandma.\n")  
-while True:
-    ei = input("\033[38;2;0;125;1mlogin or register\n").strip().lower()
-    if ei == "login":
-        print(login()) 
-    elif ei == "register":
-        
-        regis()
-    else:
-        clearr()
-        print("\033[38;2;255;1;1mtry again")
-    
-        continue
