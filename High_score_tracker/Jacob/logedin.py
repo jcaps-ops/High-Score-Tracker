@@ -2,7 +2,7 @@ import csv
 import hashlib
 from helper import sprint, clearr, processing
 import hashlib
-from hash import hash
+from Jacob.hashable import hash
 def login():  
     loop = True  
     while loop:  
