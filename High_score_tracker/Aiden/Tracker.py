@@ -68,4 +68,3 @@ def highscores():
                 all.remove(current)
                 current = {'Highscore':0}
 
-highscores()
