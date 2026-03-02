@@ -1,7 +1,7 @@
 import random
 import time
 
-def game()
+def game():
     bosslevel = 0
     currentpath = "dice"
     branchpath1 = ""
@@ -942,3 +942,7 @@ def game()
         if levelCounter <= 0 and bosslevel == 1:
             input("Are you ready to countinue:")
             jackblack()
+
+
+
+game()
