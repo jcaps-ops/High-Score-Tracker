@@ -463,6 +463,7 @@ def jackblack():
     curentmoney = money
     global islost
     global levelCounter
+    global has_won
     print("*********************************##%%%%%%%%%%%#######%#########%%###########*#######%%%#########%%%%%%%%%%%%%%#################################*****##***************")
     time.sleep(0.1)
     print("*++++++************###############%%%#%%%%##########################%###############%%%%%#######%%%%%%%%%%%%###################################*****##***************")
@@ -613,6 +614,7 @@ def jackblack():
                  has_lost = claculated_boon[1]
                  money -= boonbet
     levelCounter = 10
+    has_won = True
 
 
 
@@ -926,13 +928,17 @@ def lotterygame():
             money -= boonbet
             print("Sorry you lost")
 
-playing = False
-startingui()
-luckstat = 0
-while playing == True:
-    pathgen()
-    pathchoice()
-    levelCounter -= 1
-    if levelCounter <= 0 and bosslevel == 1:
-        input("Are you ready to countinue:")
-        jackblack()
+def gamer():
+    playing = False
+    has_won = False
+    startingui()
+    luckstat = 0
+    while playing == True:
+        if has_won == True:
+            return money
+        pathgen()
+        pathchoice()
+        levelCounter -= 1
+        if levelCounter <= 0 and bosslevel == 1:
+            input("Are you ready to countinue:")
+            jackblack()
