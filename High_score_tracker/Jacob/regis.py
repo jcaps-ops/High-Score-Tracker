@@ -12,6 +12,7 @@ def regis():
         while True:  
             password = input("\033[38;2;49;125;125mgood, now select your password, or type exit to exit\n").strip()
             if password == "exit" or password == "Exit":
+                password = "exit"
                 return password
             errors = []  
             if len(password) < 8:  
