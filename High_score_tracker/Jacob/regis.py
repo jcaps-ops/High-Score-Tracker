@@ -3,8 +3,8 @@ import csv
 import hashlib
 from helper import sprint, clearr, processing
 import hashlib  
-from High_score_tracker.Jacob.hashable import hash
-from High_score_tracker.Jacob.logedin import login
+from Jacob.hashable import hash
+from Jacob.logedin import login
 def regis():
     def pass_cheker():  
         special_characters = "!@#\$%^&*()_+-=[]{|;:,}.><?)"  
