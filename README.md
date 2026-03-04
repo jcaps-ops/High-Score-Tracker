@@ -24,6 +24,7 @@ You will need Python to run this successfully.
 
 -It's Python so no need to install anything or work for anything. Just play the game and have fun! 🎉
 
+-Libraries used: csv, hashlib, os, sys, time as t, and random 👍
 
 ## Contributors
 ***
