@@ -1021,6 +1021,7 @@ def game():
             pathgen()
             pathchoice()
             levelCounter -= 1
+            print(f"You are {levelCounter} levels from the boss")
             if levelCounter <= 0 and bosslevel == 1:
                 input("Are you ready to countinue:")
                 jackblack()
