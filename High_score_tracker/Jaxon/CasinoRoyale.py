@@ -1008,6 +1008,7 @@ def game():
     luckstat = 0
     while playing == True:
         if money <= 1:
+            loser()
             print("You ran out of money loser so get back in there loser or are you to weak")
             ttime = input("Do you want to play again(Y/N)")
             if ttime == "N" or ttime == "n":
