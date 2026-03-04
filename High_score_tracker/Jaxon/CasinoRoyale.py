@@ -1027,6 +1027,3 @@ def game():
                 input("Are you ready to countinue:")
                 jackblack()
 
-
-
-print(game())
