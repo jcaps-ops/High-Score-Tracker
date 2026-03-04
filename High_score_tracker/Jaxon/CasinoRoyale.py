@@ -2,22 +2,6 @@ import random
 import time
 
 def game():
-    bosslevel = 0
-    currentpath = "dice"
-    branchpath1 = ""
-    branchpath2 = ""
-    pathrand = 0
-    money = 500
-    boonbet = 0
-    boons = []
-    classes = []
-    potentailboonname = ["double trouble","money laundering","bonus check","Basic inssurance","diamond inssurance","Daily Double", "Daily Triple","Lucky coin","Budlight","Sober","basic Money maker","Extreme money maker","Money printer","Little for me","A lot for me","Stolen tokens","Too lucky","Grand money maker","All in frenzy"]
-    potentailbooncost = [60, 120, 70, 100, 180, 50, 100, 60, 75, 136, 120, 180,200,40,80,140,220,500,10]
-    global islost
-    islost = False
-    levelCounter = 20
-    luckstat = 0
-
     def pathgen():
         global currentpath
         global islost
@@ -842,12 +826,10 @@ def game():
         time.sleep(0.1)
         print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
         startint = input("Would you like to start:")
-        if startint != "test":
-            leveldesign1()
-        if startint == "store":
-            store()
         global playing
         playing = True
+        leveldesign1()
+        
 
     def bet(): 
         print()               
@@ -928,20 +910,121 @@ def game():
                 has_lost = claculated_boon[1]
                 money -= boonbet
                 print("Sorry you lost")
+    def loser():
+        print(".+##############################################*-      ")
+        time.sleep(0.1)
+        print("+#=------------------------------------------------=*#  ")  
+        time.sleep(0.1)
+        print("*#----------------------------------------------------+@")
+        time.sleep(0.1)
+        print("@+----------------------------------------------------=@")
+        time.sleep(0.1)
+        print("@+----------------------------------====-----==-------=@") 
+        time.sleep(0.1)
+        print("@+----+%=------+%%%%@*=----@%%@+---+@%%#+--=#@%%%=----=@")
+        time.sleep(0.1)
+        print("@+----+%=----=#*-----*%=--#@--=%---+#------=*+--#*=---=@")
+        time.sleep(0.1)
+        print("@+----+%=----+%=------#+---#@@%----+@@@@*--=#@@@#=----=@")
+        time.sleep(0.1)
+        print("@+----+%=----=#+-----+%=--*#--=@---+#------=*+-=#+----=@")
+        time.sleep(0.1)
+        print("@+----+@%%%*--=+%%%%@#=---=@%%@+---+@%%%+--=#+--**=---=@")
+        time.sleep(0.1)
+        print("@+-----=====-----===--------==------====--------------=@")
+        time.sleep(0.1)
+        print("@+----------------------------------------------------=@")
+        time.sleep(0.1)
+        print("##----------------------------------------------------+@")
+        time.sleep(0.1)
+        print("*#=------------------------------------------------=*%   ")
+        time.sleep(0.1)
+        print(".%#*****************=-----=********************#%-       ")
+        time.sleep(0.1)
+        print("                    *=---+@-                             ")  
+        time.sleep(0.1)   
+        print("                    #=-+@:                               ")     
+        time.sleep(0.1)
+        print("                    ###-                                 ")     
+        time.sleep(0.1)
+        print("                    =                                    ")   
+        time.sleep(0.1)
+        print("                                                         ")  
+        time.sleep(0.1)
+        print("                                    %*.  .*@%-=%:        ")    
+        time.sleep(0.1)
+        print("                                    %=:%+.  .*+..-%.     ")     
+        time.sleep(0.1)
+        print("                                @@@+..:%=.  ..  .=%      ")   
+        time.sleep(0.1)
+        print("                                -#..:%=..:%-.      =*    ")  
+        time.sleep(0.1)
+        print("                            -%:-%=..-%-.         .%      ")  
+        time.sleep(0.1)
+        print("                            %*  .-%-....          .+#    ")
+        time.sleep(0.1)
+        print("                                .%-  .::               +%")
+        time.sleep(0.1)
+        print("                                :#:                :#-   ")
+        time.sleep(0.1)
+        print("                                    -*:            .#-   ")  
+        time.sleep(0.1)
+        print("                                    =#+:..     .*=       ")    
+        time.sleep(0.1)
+        print("                                        -*:. .++         ")     
+        time.sleep(0.1) 
+        print("                                            :**+         ")        
+            
 
-    playing = False
+    bosslevel = 0
+    global currentpath
+    currentpath = "none"
+    global branchpath1
+    global branchpath2
+    branchpath1 = ""
+    branchpath2 = ""
+    global pathrand
+    pathrand = 0
+    global money
+    money = 500
+    global boonbet
+    boonbet = 0
+    global boons
+    boons = []
+    global potentailboonname
+    global potentailbooncost
+    potentailboonname = ["double trouble","money laundering","bonus check","Basic inssurance","diamond inssurance","Daily Double", "Daily Triple","Lucky coin","Budlight","Sober","basic Money maker","Extreme money maker","Money printer","Little for me","A lot for me","Stolen tokens","Too lucky","Grand money maker","All in frenzy"]
+    potentailbooncost = [60, 120, 70, 100, 180, 50, 100, 60, 75, 136, 120, 180,200,40,80,140,220,500,10]
+    global islost
+    islost = False
+    global levelCounter
+    levelCounter = 20
+    global luckstat
+    luckstat = 0
+
+    playing = True
     has_won = False
     startingui()
     luckstat = 0
     while playing == True:
-        if has_won == True:
-            return money
-        pathgen()
-        pathchoice()
-        levelCounter -= 1
-        if levelCounter <= 0 and bosslevel == 1:
-            input("Are you ready to countinue:")
-            jackblack()
+        if money <= 1:
+            print("You ran out of money loser so get back in there loser or are you to weak")
+            ttime = input("Do you want to play again(Y/N)")
+            if ttime == "N" or ttime == "n":
+                 return(money)
+            else:
+                 game()
+        else:
+            if has_won == True:
+                print("test")
+                return money
+            pathgen()
+            pathchoice()
+            levelCounter -= 1
+            if levelCounter <= 0 and bosslevel == 1:
+                input("Are you ready to countinue:")
+                jackblack()
 
 
 
+print(game())
