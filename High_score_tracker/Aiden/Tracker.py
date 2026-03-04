@@ -3,7 +3,7 @@ import csv
 
 def score_tracking(username, score):
     all = []
-    with open("High_score_tracker/Aiden/highscores.csv", mode= 'r') as sample:
+    with open("Documents/A_Highscores.csv", mode= 'r') as sample:
         reader = csv.reader(sample)
         for line in reader:
             if line[0] == 'Username':
@@ -26,7 +26,7 @@ def score_tracking(username, score):
             all.append(newline)
         except:
             all.append({'Username':username ,'Highscore':score ,'Latest Score':score})
-    with open("High_score_tracker/Aiden/highscores.csv", mode= 'w', newline= '') as sample:
+    with open("Documents/A_Highscores.csv", mode= 'w', newline= '') as sample:
         fieldnames = ['Username','Highscore','Latest Score']
         writer = csv.DictWriter(sample, fieldnames=fieldnames)
         writer.writeheader()
@@ -35,7 +35,7 @@ def score_tracking(username, score):
 def highscores():
     all = []
     current = {'Highscore':0}
-    with open("High_score_tracker/Aiden/highscores.csv", mode= 'r') as sample:
+    with open("Documents/A_Highscores.csv", mode= 'r') as sample:
         reader = csv.reader(sample)
         for line in reader:
             if line[0] == 'Username':

@@ -38,15 +38,3 @@ def login():
         else:  
             clearr()
             sprint("\033[38;2;255;1;1mYou Spell Like my grandma.\n")  
-while True:
-    ei = input("\033[38;2;0;125;1mlogin or register\n").strip().lower()
-    if ei == "login":
-        print(login()) 
-    elif ei == "register":
-        
-        regis()
-    else:
-        clearr()
-        print("\033[38;2;255;1;1mtry again")
-    
-        continue
