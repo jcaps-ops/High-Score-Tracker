@@ -40,7 +40,7 @@ def regis():
         if option == "exit":
             clearr()  
             loop = False
-            return 
+            return option
               
         try:  
             with open("Documents/pass_a_user.csv", mode="r+") as file:  

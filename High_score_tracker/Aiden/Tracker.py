@@ -35,6 +35,7 @@ def score_tracking(username, score):
 def highscores():
     all = []
     current = {'Highscore':0}
+    print("Leaderboard: ")
     with open("Documents/A_Highscores.csv", mode= 'r') as sample:
         reader = csv.reader(sample)
         for line in reader:
@@ -68,3 +69,5 @@ def highscores():
                 all.remove(current)
                 current = {'Highscore':0}
 
+score_tracking('LancerDeltarune',64103549375429600686275918761)
+highscores()
