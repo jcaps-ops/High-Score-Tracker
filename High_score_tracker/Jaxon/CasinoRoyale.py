@@ -831,6 +831,14 @@ def game():
         print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
         time.sleep(0.1)
         print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+        print("Here is how to play")
+        print("First you will see a menu like this")
+        print(f"---------------option 1----")
+        print(f"--start-------------------------")
+        print(f"---------------option 2----")
+        print("Now what do you do at this stage")
+        print("well you will recive two choices ")
+
         startint = input("Would you like to start:")
         global playing
         playing = True
@@ -984,7 +992,7 @@ def game():
 
     bosslevel = 0
     global currentpath
-    currentpath = "none"
+    currentpath = "Start"
     global branchpath1
     global branchpath2
     branchpath1 = ""
