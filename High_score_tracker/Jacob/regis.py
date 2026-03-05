@@ -10,8 +10,9 @@ def regis():
         special_characters = "!@#\$%^&*()_+-=[]{|;:,}.><?)"  
         numbers = "1234567890"  
         while True:  
-            password = input("\033[38;2;49;125;125mgood, now select your password, or type exit to exit\n").strip()
+            password = input("\033[38;2;49;125;125mgood, now select your password, or type exit to exit, make sure its a strong password with all basics\n").strip()
             if password == "exit" or password == "Exit":
+                password = "exit"
                 return password
             errors = []  
             if len(password) < 8:  
@@ -39,7 +40,7 @@ def regis():
         if option == "exit":
             clearr()  
             loop = False
-            return 
+            return option
               
         try:  
             with open("Documents/pass_a_user.csv", mode="r+") as file:  
