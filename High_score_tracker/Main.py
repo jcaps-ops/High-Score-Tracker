@@ -7,31 +7,54 @@ from Aiden.Tracker import score_tracking, highscores
 from Jaxon.CasinoRoyale import game
 
 while True:
-    ei = input("\033[38;2;0;125;1mlogin or register\n").strip().lower()
-    if ei == "login":
+    ei = input("\033[38;2;0;125;1m1: login\n2: register\n3: play (this will not save your score, for you did not log in)\n4: view leaderboard\n5: leave\n").strip().lower()
+    if ei == "1":
         username = login()
-        print(username) 
-    elif ei == "register": 
+        if username == 'exit' or username == 'Exit':
+            continue
+        else:
+            pass
+        score_tracking(username, game())
+
+    elif ei == "2": 
         username = regis()
         if username == 'exit' or username == 'Exit':
             continue
         else:
             pass
+        score_tracking(username, game())
+    
+    elif ei == "3": 
+        game()
+    
+    elif ei == "4": 
+        clearr()
+        highscores()
+        print('\n\n')
+        continue
+
+    elif ei == "5": 
+        break
+
     else:
         clearr()
         print("\033[38;2;255;1;1mtry again")
     
         continue
     print("Please use full screen")
-    score_tracking(game(), username)
+    
 
     highscores()
 
     while True:
         uinput = input("Would you like to 1: Play Again, or 2: Leave?\n").strip()
         if uinput == '1':
-            score_tracking(game(), username)
-            highscores()
+            try:
+                score_tracking(username, game())
+                highscores()
+            except:
+                game()
+                highscores
         elif uinput == '2':
             break
         else:
