@@ -1,8 +1,14 @@
+# AC JC JQ NH 2nd Helper functions for main
+#Import the libraries os, time as t, and sys
 import os
 import sys
 import time as t
-def clearr():  
+
+#def clear function
+def clearr():
     os.system('cls' if os.name == 'nt' else 'clear')  
+
+#def the processing function
 def processing(text="Processing", duration=3, speed=0.5):
     end_time = t.time() + duration
     while t.time() < end_time:
@@ -13,6 +19,8 @@ def processing(text="Processing", duration=3, speed=0.5):
     sys.stdout.write('\r' + ' ' * (len(text) + 3) + '\r')
     sys.stdout.flush()
     print(text)
+
+#def the speed print function
 def sprint(text, delay=0.025):  
     for char in text:  
         sys.stdout.write(char)  
