@@ -361,8 +361,14 @@ def game():
                 income += bi
                 print(f"Your Diamond insurance kicked in saving you {bi} dollars")
         
-        if money == 0:
-            has_lost = True
+        if money <= 1:
+            loser()
+            print("You ran out of money loser so get back in there loser or are you to weak")
+            ttime = input("Do you want to play again(Y/N)")
+            if ttime == "N" or ttime == "n":
+                 print("Well good luck loser")
+            else:
+                 game()
 
         if "All in frenzy" in boons:
             if islost == False:
@@ -825,6 +831,13 @@ def game():
         print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
         time.sleep(0.1)
         print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+        print("Here is how to play")
+        print("First you will see a menu like this")
+        print(f"---------------option 1----")
+        print(f"--start-------------------------")
+        print(f"---------------option 2----")
+        print("Now what do you do at this stage")
+        print("well you will recive two choices ")
         startint = input("Would you like to start:")
         global playing
         playing = True
@@ -978,7 +991,7 @@ def game():
 
     bosslevel = 0
     global currentpath
-    currentpath = "none"
+    currentpath = "Start"
     global branchpath1
     global branchpath2
     branchpath1 = ""
@@ -1007,23 +1020,12 @@ def game():
     startingui()
     luckstat = 0
     while playing == True:
-        if money <= 1:
-            loser()
-            print("You ran out of money loser so get back in there loser or are you to weak")
-            ttime = input("Do you want to play again(Y/N)")
-            if ttime == "N" or ttime == "n":
-                 return(money)
-            else:
-                 game()
-        else:
-            if has_won == True:
-                print("test")
-                return money
+            print(f"You are {levelCounter} levels from the boss")
             pathgen()
             pathchoice()
             levelCounter -= 1
             print(f"You are {levelCounter} levels from the boss")
-            if levelCounter <= 0 and bosslevel == 1:
+            if levelCounter <= 0:
                 input("Are you ready to countinue:")
                 jackblack()
 
