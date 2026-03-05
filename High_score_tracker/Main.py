@@ -22,7 +22,7 @@ while True:
         print("\033[38;2;255;1;1mtry again")
     
         continue
-    
+    print("Please use full screen")
     score_tracking(game(), username)
 
     highscores()
