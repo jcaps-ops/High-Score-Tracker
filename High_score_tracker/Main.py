@@ -1,4 +1,4 @@
-#This is the main file for high score tracker. AC NH JQ JC 2nd
+#This is the main file for high score tracker. AS NH JQ JC 2nd
 #Import everything
 from Jacob.logedin import login
 from Jacob.regis import regis
