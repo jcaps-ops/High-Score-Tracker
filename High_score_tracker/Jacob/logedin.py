@@ -10,7 +10,7 @@ def login():
         if option == "exit": 
             clearr() 
             loop = False  
-            continue  
+            return 'exit'
         try:  
             with open("Documents/pass_a_user.csv", mode="r") as file:  
                 reader = csv.reader(file, delimiter=',')                               
