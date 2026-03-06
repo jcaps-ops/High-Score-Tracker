@@ -1044,7 +1044,3 @@ def game():
                 input("Are you ready to countinue:")
                 jackblack(currentpath,luckstat,money,boonbet,boons,potentailboonname,potentailbooncost)
                 return(money)
-
-
-
-game()
