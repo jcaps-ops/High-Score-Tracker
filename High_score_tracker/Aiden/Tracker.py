@@ -19,7 +19,6 @@ def score_tracking(username, score):
                     newline['Highscore'] = score
                 else:
                     pass
-                print(newline)
             else:
                 pass
         try:
@@ -43,7 +42,6 @@ def highscores():
                 pass
             else:
                 all.append({'Username':line[0] ,'Highscore':line[1]})
-        print(all)
         if len(all) >= 10:
             for i in range(1, 10):
                 for user in all:
@@ -57,7 +55,7 @@ def highscores():
                 all.remove(current)
                 current = {'Highscore':0}
         else:
-            for i in range(1, len(all)):
+            for i in range(1, len(all)+1):
                 for user in all:
                     if int(user['Highscore']) > int(current['Highscore']):
                         current = user
@@ -69,5 +67,3 @@ def highscores():
                 all.remove(current)
                 current = {'Highscore':0}
 
-score_tracking('LancerDeltarune',64103549375429600686275918761)
-highscores()

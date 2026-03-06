@@ -2,9 +2,8 @@ import random
 import time
 
 def game():
-    def pathgen():
-        global currentpath
-        global islost
+    def pathgen(currentpath,islost,money):
+        
         islost = False
         pathrand = random.randint(1,6)
         global branchpath1
@@ -35,45 +34,50 @@ def game():
         if pathrand == 6:
             branchpath2 = "Lottery-----"
         
-
+        print(f"Your current cash is {money}")
         print(f"---------------{branchpath1}----")
         print(f"--{currentpath}-------------------------")
         print(f"---------------{branchpath2}----")
 
+        answering = True
+        while answering:
+            p_choice = input("Which path do you want to take (W or S):")
+            if p_choice == "w" or  p_choice == "W":
+                currentpath = branchpath1
+                break
+            elif p_choice == "s" or p_choice == "S":
+                currentpath = branchpath2
+                break
+            else:
+                print("Wrong pathway")
+
+        return currentpath
         
 
-        p_choice = input("Which path do you want to take (W or S):")
 
-        if p_choice == "w":
-            currentpath = branchpath1
-        
-        elif p_choice == "s":
-            currentpath = branchpath2
-            
-        else:
-            print("Wrong pathway")
-
-    def pathchoice():
-        global currentpath
+    def pathchoice(currentpath,luckstat,money,boonbet,boons,potentailboonname,potentailbooncost):
         
         if currentpath == "dice--------":
-            dicegame()
+            money = dicegame(luckstat,money,boonbet,boons)
         if currentpath == "slot machine":
-            slotmachinegame()
+            money =slotmachinegame(luckstat,money,boonbet,boons)
         if currentpath == "blackjack---":
-            blackjackgame()
+            money =blackjackgame(luckstat,money,boonbet,boons)
         if currentpath == "wheel-------":
-            wheelgame()
+            money =wheelgame(luckstat,money,boonbet,boons)
         if currentpath == "store-------":
-            store()
+            store_temp = store(money,potentailboonname,potentailbooncost,luckstat,boons)
+            money = store_temp[0]
+            potentailboonname = store_temp[1]
+            potentailbooncost = store_temp[2]
+            luckstat = store_temp[3]
+            print(f"You have these boons {boons}")
         if currentpath == "Lottery-----":
-            lotterygame()
+            money =lotterygame(luckstat,money,boonbet,boons)
+        return(currentpath,luckstat,money,boonbet,boons,potentailboonname,potentailbooncost)
 
 
-    def dicegame():
-        global money
-        global boonbet
-        global islost
+    def dicegame(luckstat,money,boonbet,boons):
         boonbet = 0
         p_roll = 0
         D_roll = 0
@@ -83,7 +87,10 @@ def game():
 
         print(f"Your current money is {money}")
 
-        bet()
+        bet_value = bet(money,boonbet)
+        money = bet_value[0]
+        boonbet = bet_value[1]
+        all_in = bet_value[2]
 
         p_roll = random.randint(1,6)
         D_roll = random.randint(1,6)
@@ -108,12 +115,13 @@ def game():
             claculated_boon = calcboon(luckstat,money,boonbet,boons,all_in)
             money = claculated_boon[0]
             has_lost = claculated_boon[1]
+        return money
 
-    def slotmachinegame():
-        global money
-        global boonbet
-        global islost
-        boonbet = 0
+    def slotmachinegame(luckstat,money,boonbet,boons):
+        bet_value = bet(money,boonbet)
+        money = bet_value[0]
+        boonbet = bet_value[1]
+        all_in = bet_value[2]
 
         slot1 = ""
         slot2 = ""
@@ -130,7 +138,7 @@ def game():
             slot1 = "Z"
         if randomvalue == 5:
             slot1 = "W"
-
+ 
         randomvalue = random.randint(1,5)
         if randomvalue == 1:
                 slot2 = "X"
@@ -155,7 +163,7 @@ def game():
         if randomvalue == 5:
                 slot3 = "W"
         print(f"You have {money} dollars")
-        bet()
+        bet(money,boonbet)
         print(f"---{slot1}---{slot2}---{slot3}---")
 
         if slot1 == slot2 and slot2 == slot3:
@@ -174,12 +182,10 @@ def game():
                     money = claculated_boon[0]
                     has_lost = claculated_boon[1]
                     money -= boonbet
+        return money
             
-    def blackjackgame():
+    def blackjackgame(luckstat,money,boonbet,boons):
         
-        global money
-        global boonbet
-        global islost
         boonbet = 0
         total = 0
         is_playing = True
@@ -187,7 +193,10 @@ def game():
 
         
         print(f"the anount of money you have is {money}")
-        bet()
+        bet_value = bet(money,boonbet)
+        money = bet_value[0]
+        boonbet = bet_value[1]
+        all_in = bet_value[2]
 
         total = 0
 
@@ -244,16 +253,18 @@ def game():
             money = claculated_boon[0]
             has_lost = claculated_boon[1]
             money -= boonbet
+        return money
 
-    def wheelgame():
-        global money
-        global boonbet
-        global islost
+    def wheelgame(luckstat,money,boonbet,boons):
+
         boonbet = 0
         bet_location = "white"
 
         print(f"You have {money} dollars")
-        bet()
+        bet_value = bet(money,boonbet)
+        money = bet_value[0]
+        boonbet = bet_value[1]
+        all_in = bet_value[2]
         bet_location = input("What color do you want to bet on (red black green)")
 
         wheelspin = random.randint(1,101)
@@ -285,12 +296,9 @@ def game():
                 islost = True
                 money -= boonbet
                 print("You lost")
+        return money
 
-    def store():
-        global money
-        global potentailboonname
-        global potentailbooncost
-        global luckstat
+    def store(money,potentailboonname,potentailbooncost,luckstat,boons):
         newboon = ""
 
         boonrand1 = random.randint(0,len(potentailbooncost) - 1)
@@ -300,7 +308,6 @@ def game():
         boonrand2 = random.randint(0,(len(potentailbooncost) - 1))
         storeoption2name = potentailboonname[boonrand2]
         storeoption2cost = potentailbooncost[boonrand2]
-        global boons
         while True:
                 print(f"You have {money} dollars")
                 print("The options at the store")
@@ -336,12 +343,12 @@ def game():
             luckstat -= 3
         if newboon == "Too lucky":
             luckstat += 7
-        print(f"You have these boons {boons}")
+        
+        return(money,potentailboonname,potentailbooncost,luckstat)
                 
         
         
     def calcboon(luckstat,money,boonbet,boons,all_in):
-        
         has_lost = False
 
         income = 0
@@ -361,8 +368,14 @@ def game():
                 income += bi
                 print(f"Your Diamond insurance kicked in saving you {bi} dollars")
         
-        if money == 0:
-            has_lost = True
+        if money <= 1:
+            loser()
+            print("You ran out of money loser so get back in there loser or are you too weak")
+            ttime = input("Do you want to play again(Y/N)")
+            if ttime == "N" or ttime == "n":
+                 print("Well good luck loser")
+            else:
+                 game()
 
         if "All in frenzy" in boons:
             if islost == False:
@@ -441,14 +454,9 @@ def game():
         return(money,has_lost)
         
 
-    def jackblack():
+    def jackblack(currentpath,luckstat,money,boonbet,boons,potentailboonname,potentailbooncost):
         #this is baccarate 
-        global money
-        global boonbet
         curentmoney = money
-        global islost
-        global levelCounter
-        global has_won
         print("*********************************##%%%%%%%%%%%#######%#########%%###########*#######%%%#########%%%%%%%%%%%%%%#################################*****##***************")
         time.sleep(0.1)
         print("*++++++************###############%%%#%%%%##########################%###############%%%%%#######%%%%%%%%%%%%###################################*****##***************")
@@ -555,7 +563,10 @@ def game():
         time.sleep(0.2)
         while money < curentmoney * 2:   
                 print(f"you have {money} dollars")
-                bet()
+                bet_value = bet(money,boonbet)
+                money = bet_value[0]
+                boonbet = bet_value[1]
+                all_in = bet_value[2]
                 total = 0
                 total += random.randint(1,9)
                 total += random.randint(1,9)
@@ -600,7 +611,7 @@ def game():
                     money -= boonbet
         levelCounter = 10
         has_won = True
-
+        return(money)
 
 
     def leveldesign1():
@@ -732,8 +743,7 @@ def game():
         time.sleep(0.1)
         print("                                                                                      @@@@=                                                                        ")
         time.sleep(0.1)
-        global bosslevel
-        bosslevel = 1
+
 
     def startingui():
         print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
@@ -825,17 +835,32 @@ def game():
         print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
         time.sleep(0.1)
         print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+        time.sleep(0.1)
+        print("Here is how to play")
+        time.sleep(0.1)
+        print("First you will see a menu like this")
+        time.sleep(0.1)
+        print(f"---------------option 1----")
+        time.sleep(0.1)
+        print(f"--start-------------------------")
+        time.sleep(0.1)
+        print(f"---------------option 2----")
+        time.sleep(0.1)
+        print("Now what do you do at this stage")
+        time.sleep(0.1)
+        print("well you will recive two choices ")
+        time.sleep(0.1)
+        print("Where would you like to go(w or S)")
+        time.sleep(0.1)
+        print("This is the choice on which option with W being the first one and S being the second one")
+        time.sleep(0.1)
         startint = input("Would you like to start:")
         global playing
         playing = True
         leveldesign1()
         
 
-    def bet(): 
-        print()               
-        global money
-        global boonbet
-        global all_in
+    def bet(money,boonbet): 
         all_in = False
         while True:
             while True:
@@ -852,10 +877,9 @@ def game():
             else:
                 break
 
-    def lotterygame():
-        global boonbet
-        global money
-        global islost
+        return(money,boonbet,all_in)
+
+    def lotterygame(luckstat,money,boonbet,boons):
 
         print(f"You have {money} dollars")
         paction = input("What size lottey do you want to play (L:50 M:25 S:5)")
@@ -910,6 +934,7 @@ def game():
                 has_lost = claculated_boon[1]
                 money -= boonbet
                 print("Sorry you lost")
+        return money
     def loser():
         print(".+##############################################*-      ")
         time.sleep(0.1)
@@ -977,29 +1002,17 @@ def game():
             
 
     bosslevel = 0
-    global currentpath
-    currentpath = "none"
-    global branchpath1
-    global branchpath2
+    currentpath = "Start"
     branchpath1 = ""
     branchpath2 = ""
-    global pathrand
     pathrand = 0
-    global money
     money = 500
-    global boonbet
     boonbet = 0
-    global boons
     boons = []
-    global potentailboonname
-    global potentailbooncost
     potentailboonname = ["double trouble","money laundering","bonus check","Basic inssurance","diamond inssurance","Daily Double", "Daily Triple","Lucky coin","Budlight","Sober","basic Money maker","Extreme money maker","Money printer","Little for me","A lot for me","Stolen tokens","Too lucky","Grand money maker","All in frenzy"]
     potentailbooncost = [60, 120, 70, 100, 180, 50, 100, 60, 75, 136, 120, 180,200,40,80,140,220,500,10]
-    global islost
     islost = False
-    global levelCounter
     levelCounter = 20
-    global luckstat
     luckstat = 0
 
     playing = True
@@ -1007,23 +1020,27 @@ def game():
     startingui()
     luckstat = 0
     while playing == True:
-        if money <= 1:
-            loser()
-            print("You ran out of money loser so get back in there loser or are you to weak")
-            ttime = input("Do you want to play again(Y/N)")
-            if ttime == "N" or ttime == "n":
-                 return(money)
-            else:
-                 game()
-        else:
-            if has_won == True:
-                print("test")
-                return money
-            pathgen()
-            pathchoice()
-            levelCounter -= 1
             print(f"You are {levelCounter} levels from the boss")
-            if levelCounter <= 0 and bosslevel == 1:
+            currentpath = pathgen(currentpath,islost,money)
+            path_temp = pathchoice(currentpath,luckstat,money,boonbet,boons,potentailboonname,potentailbooncost)
+            currentpath = path_temp[0]
+            luckstat = path_temp[1]
+            money = path_temp[2]
+            boonbet = path_temp[3]
+            boons = path_temp[4]
+            potentailboonname = path_temp[5]
+            potentailbooncost = path_temp[6]
+            levelCounter -= 1
+            if money <= 1:
+                loser()
+                print("You ran out of money loser so get back in there loser or are you too weak")
+                ttime = input("Do you want to play again(Y/N)")
+                if ttime == "N" or ttime == "n":
+                    print("Well good luck loser")
+                else:
+                    game()
+            print(f"You are {levelCounter} levels from the boss")
+            if levelCounter <= 0:
                 input("Are you ready to countinue:")
-                jackblack()
-
+                jackblack(currentpath,luckstat,money,boonbet,boons,potentailboonname,potentailbooncost)
+                return(money)
