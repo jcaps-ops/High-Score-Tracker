@@ -10,7 +10,7 @@ def regis():
         special_characters = "!@#\$%^&*()_+-=[]{|;:,}.><?)"  
         numbers = "1234567890"  
         while True:  
-            password = input("\033[38;2;49;125;125mgood, now select your password, or type exit to exit, make sure its a strong password with all basics\n").strip()
+            password = input("\033[38;2;49;125;125mgood, now select your password, or type exit to exit, \033[38;2;255;1;1mmake sure its a strong password with all basics, '/' does not work\n").strip()
             if password == "exit" or password == "Exit":
                 password = "exit"
                 return password
