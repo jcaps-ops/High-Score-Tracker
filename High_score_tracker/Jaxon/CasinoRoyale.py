@@ -118,6 +118,7 @@ def game():
         return money
 
     def slotmachinegame(luckstat,money,boonbet,boons):
+
         bet_value = bet(money,boonbet)
         money = bet_value[0]
         boonbet = bet_value[1]
@@ -266,6 +267,16 @@ def game():
         boonbet = bet_value[1]
         all_in = bet_value[2]
         bet_location = input("What color do you want to bet on (red black green)")
+        answering = True
+        while answering:
+            if bet_location.lower() == "red":
+                 answering = False
+            if bet_location.lower() == "black":
+                 answering = False
+            if bet_location.lower() == "green":
+                 answering = False
+            
+
 
         wheelspin = random.randint(1,101)
         wheelcolor = ""
@@ -374,13 +385,14 @@ def game():
             ttime = input("Do you want to play again(Y/N)")
             if ttime == "N" or ttime == "n":
                  print("Well good luck loser")
+                 return 0 
             else:
                  game()
 
         if "All in frenzy" in boons:
-            if islost == False:
-                if all_in == True:
-                    income += boonbet
+            if all_in == True:
+                print(f"All in frenzy kicked in earning you {random.randrange(0,money)}")
+                income += 1
 
         if "Stolen tokens" in boons:
             bi = boonbet/4
@@ -1037,6 +1049,7 @@ def game():
                 ttime = input("Do you want to play again(Y/N)")
                 if ttime == "N" or ttime == "n":
                     print("Well good luck loser")
+                    return 0 
                 else:
                     game()
             print(f"You are {levelCounter} levels from the boss")
